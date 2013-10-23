@@ -1,13 +1,15 @@
+#everyone is a person
 class Person
 	
 	attr_accessor :name
 
 	def greeting
-		puts "Hi, my name is #{@name}"
+		puts "Hi, my name is #{@name}."
 	end
 
 end
 
+#class for students, who get stuff
 class Student < Person
 
 	def learn
@@ -16,6 +18,7 @@ class Student < Person
 
 end
 
+#class for instructors, who love objects
 class Instructor < Person
 
 	def teach
@@ -24,7 +27,12 @@ class Instructor < Person
 
 end
 
-Josh = Student.new
-Josh.name = "Josh"
-Josh.greeting
-Josh.learn
+#Instantiate new instructor Chris
+Chris = Instructor.new
+Chris.name = "Chris"
+Chris.greeting
+
+#Instantiate new student Cristina
+Cristina = Student.new
+Cristina.name = "Cristina"
+Cristina.greeting
