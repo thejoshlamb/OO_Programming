@@ -36,3 +36,10 @@ Chris.greeting
 Cristina = Student.new
 Cristina.name = "Cristina"
 Cristina.greeting
+
+#teaching and learning
+Chris.teach
+Cristina.learn
+
+#calling learn to the Instructor class doesn't work, as the Instructor class does not have or inherit this method.
+#Chris.learn
