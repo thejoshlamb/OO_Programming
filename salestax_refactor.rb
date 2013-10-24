@@ -1,3 +1,4 @@
+#Utilities to assist in rounding and displaying currency amounts
 module Utils
 	def self.round(number)
 		return number if number % 5 == 0
@@ -9,6 +10,7 @@ module Utils
 	end
 end
 
+#reciept class contains a basket of items
 class Receipt	
 	@@tax_exempt_keywords = ["book","chocolate","pill","kitten"]
 	attr_accessor :basket
@@ -30,7 +32,7 @@ class Receipt
 		basket.each do |item|
 			totaltax += item.tax
 		end
-		return Utils.formatted(totaltax)
+		return totaltax
 	end
 
 	def total
@@ -38,17 +40,17 @@ class Receipt
 		basket.each do |item|
 			tot += item.total_price
 		end
-		return Utils.formatted(tot)
+		return tot
 	end
 
 	def print_receipt
 		basket.each {|item| item.display }
-		puts "Sales Tax: $#{total_tax}" unless total_tax == 0
-		puts "Total: $#{total}"
+		puts "Sales Tax: $#{Utils.formatted(total_tax)}" unless total_tax == 0
+		puts "Total: $#{Utils.formatted(total)}"
 	end
-
 end
 
+#Item class is the actual product purchased
 class Item < Receipt
 	attr_accessor :quantity, :description, :price
 
@@ -118,17 +120,7 @@ puts "-------------------------------------"
 Receipt3 = Receipt.new([item6,item7,item8, item9])
 Receipt3.print_receipt
 
-puts "-------------------------------------"
 
-#tests
-puts item1.quantity
-puts item1.description
-puts item1.price
-puts item1.tax_rate
-puts item1.tax
-puts item1.total_price
-
-item1.display
 
 
 
