@@ -1,11 +1,11 @@
-class Plateau
-	attr_accessor :width, :length
+# class Plateau
+# 	attr_accessor :width, :length
 
-	def initialize(width,length)
-		@width = width
-		@length = length
-	end
-end
+# 	def initialize(width,length)
+# 		@width = width
+# 		@length = length
+# 	end
+# end
 
 class Rover # <Plateau
 	attr_accessor :x_position, :y_position, :facing
@@ -14,6 +14,7 @@ class Rover # <Plateau
 		@x_position = input.split(" ")[0].to_i
 		@y_position = input.split(" ")[1].to_i
 		@facing = input.split(" ")[2]
+		puts "#{self} deployed to #{x_position},#{y_position}, facing #{@facing}"
 	end
 
 	def instructions(instructions_string)
@@ -41,6 +42,8 @@ class Rover # <Plateau
 	# 		return true if y_position <= 0
 	# 	when "W"
 	# 		return true if x_position <= 0
+	# 	else
+	# 		return false
 	# 	end
 	# end
 
@@ -85,12 +88,12 @@ class Rover # <Plateau
 	end
 
 	def report
-		puts "#{self.class} Now facing #{@facing} at #{x_position},#{y_position}"
+		puts "#{self} Now facing #{@facing} at #{x_position},#{y_position}"
 	end
 
 end
 
-plateau1 = Plateau.new(5,5)
+#plateau1 = Plateau.new(5,5)
 rover1 = Rover.new("1 2 N")
 rover1.report
 rover1.instructions("LMLMLMLMM")
@@ -98,11 +101,3 @@ rover1.instructions("LMLMLMLMM")
 rover2 = Rover.new("3 3 E")
 rover2.report
 rover2.instructions("MMRMMRMRRM")
-
-#tests
-puts plateau1.width
-puts plateau1.length
-
-puts rover1.x_position
-puts rover1.y_position
-puts rover1.facing
