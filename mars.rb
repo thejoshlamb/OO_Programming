@@ -7,7 +7,7 @@ class Plateau
 	end
 end
 
-class Rover 
+class Rover # <Plateau
 	attr_accessor :x_position, :y_position, :facing
 
 	def initialize(input)
@@ -27,33 +27,47 @@ class Rover
 			when "M"
 				move_forward
 			end
+			report
 		end
 	end
 		
+	# def illegal?
+	# 	case @facing
+	# 	when "N"
+	# 		return true if y_position >= @length
+	# 	when "E"
+	# 		return true if x_position >= @width
+	# 	when "S"
+	# 		return true if y_position <= 0
+	# 	when "W"
+	# 		return true if x_position <= 0
+	# 	end
+	# end
+
 
 	def turn_right
 		case @facing
 		when "N"
-			@facing = "W"
-		when "E"
-			@facing = "N"
-		when "S"
 			@facing = "E"
-		when "W"
+		when "E"
 			@facing = "S"
+		when "S"
+			@facing = "W"
+		when "W"
+			@facing = "N"
 		end
 	end
 
 	def turn_left
 		case @facing
 		when "N"
-			@facing = "E"
-		when "E"
-			@facing = "S"
-		when "S"
 			@facing = "W"
-		when "W"
+		when "E"
 			@facing = "N"
+		when "S"
+			@facing = "E"
+		when "W"
+			@facing = "S"
 		end
 	end
 
@@ -66,15 +80,24 @@ class Rover
 		when "S"
 			@y_position -= 1
 		when "W"
-			@y_position -= 1
+			@x_position -= 1
 		end
+	end
+
+	def report
+		puts "#{self.class} Now facing #{@facing} at #{x_position},#{y_position}"
 	end
 
 end
 
 plateau1 = Plateau.new(5,5)
 rover1 = Rover.new("1 2 N")
+rover1.report
 rover1.instructions("LMLMLMLMM")
+
+rover2 = Rover.new("3 3 E")
+rover2.report
+rover2.instructions("MMRMMRMRRM")
 
 #tests
 puts plateau1.width
